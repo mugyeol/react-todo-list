@@ -66,7 +66,7 @@ function App() {
   };
   const deleteTodoHandler = (todoId) => {
     setTodoList((prevList) => {
-      return [...prevList.filter((todo) => todo.id !== todoId)];
+      return prevList.filter((todo) => todo.id !== todoId);
     });
   };
   const completeTodoHandler = (todoId, isDone) => {
