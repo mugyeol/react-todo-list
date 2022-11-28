@@ -28,7 +28,7 @@ const AddTodo = (props) => {
         <input onChange={titleChangeHandler} value={title} required/>
         <label>내용 : </label>
         <input onChange={contentChangeHandler} value={content} />
-        <Button className={classes.addbtn} onClick={addTodoHandler}>추가하기</Button>
+        <Button className={classes.addbtn} type="submit">추가하기</Button>
       </form>
     </Card>
   );
