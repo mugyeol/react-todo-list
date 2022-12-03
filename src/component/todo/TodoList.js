@@ -1,13 +1,16 @@
 import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import Card from "../UI/Card";
 import Todo from "./Todo";
 import classes from "./TodoList.module.css";
 
-const TodoList = (props) => {
+const TodoList = () => {
 
-  console.log(props.todoList)
-  const workingList = props.todoList.filter((el) => !el.isDone);
-  const doneList = props.todoList.filter((el) => el.isDone);
+  const todos = useSelector(state=>state.todos)
+  console.log(todos)
+  const workingList = todos.filter((el) => !el.isDone);
+  const doneList = todos.filter((el) => el.isDone);
+
   return (
     <Fragment>
       <h1>working</h1>
@@ -16,8 +19,8 @@ const TodoList = (props) => {
           <Todo
             key={todo.id}
             todo={todo}
-            onDelete={props.onDeleteTodo}
-            onComplete={props.onCompleteTodo}
+            // onDelete={props.onDeleteTodo}
+            // onComplete={props.onCompleteTodo}
           />
         ))}
       </Card>
@@ -27,8 +30,8 @@ const TodoList = (props) => {
           <Todo
             key={todo.id}
             todo={todo}
-            onDelete={props.onDeleteTodo}
-            onComplete={props.onCompleteTodo}
+            // onDelete={props.onDeleteTodo}
+            // onComplete={props.onCompleteTodo}
           />
         ))}
       </Card>

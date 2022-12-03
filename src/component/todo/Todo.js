@@ -1,14 +1,40 @@
 import React, { Fragment } from "react";
+import { useDispatch } from "react-redux";
+import { completeTodo, deleteTodo } from "../../redux/modules/todos";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import classes from "./Todo.module.css";
 
 const Todo = ({ todo, onDelete, onComplete }) => {
+  // const deleteTodoHandler = (todoId) => {
+    // setTodoList((prevList) => {
+    //   return prevList.filter((todo) => todo.id !== todoId);
+    // });
+  // };
+  // const completeTodoHandler = (todoId, isDone) => {
+    // if (isDone) {
+    //   setTodoList((prevList) => {
+    //     let index = prevList.findIndex((todo) => todo.id === todoId);
+    //     prevList[index].isDone = false;
+    //     return [...prevList];
+    //   });
+    // } else {
+    //   setTodoList((prevList) => {
+    //     let index = prevList.findIndex((todo) => todo.id === todoId);
+    //     prevList[index].isDone = true;
+    //     return [...prevList];
+    //   });
+    // }
+  // };
+  const dispatch = useDispatch()
   const deleteTodoHandler = () => {
-    onDelete(todo.id);
+    console.log("todo.id",todo.id)
+    dispatch(deleteTodo(todo.id))
+    // onDelete(todo.id);
   };
   const completeTodoHandler = () => {
-    onComplete(todo.id, todo.isDone);
+    dispatch(completeTodo(todo.id))
+    // onComplete(todo.id, todo.isDone);
   };
 
   return (

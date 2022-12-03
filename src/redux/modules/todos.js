@@ -31,6 +31,15 @@ const todos = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, action.payload];
+    case DELETE_TODO:
+      const stateAfterDelete = state.filter((todo)=>todo.id !==action.payload)
+      return stateAfterDelete
+    case COMPLETE_TODO:
+        //여기부터 차근차근 볼것 
+      const idx = state.findIndex((todo)=>todo.id === action.payload)
+      const stateCopy = [...state]
+      stateCopy[idx] = !stateCopy[idx].isDone
+      return stateCopy;
     default:
       return state;
   }
