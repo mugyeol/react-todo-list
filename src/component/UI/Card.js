@@ -9,5 +9,5 @@ export const StCard = styled.div`
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 8px;
   padding: 20px;
-  margin-top:  ${({ margin }) => margin||"20px"};
+  margin:  ${({ margin }) => margin||"20px 0 20px"};
 `;
