@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../UI/Button";
-import Card from "../UI/Card";
+import { StCard } from "../UI/Card";
 import nextId from "react-id-generator";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo } from "../../redux/modules/todos";
 import styled from "styled-components";
 
@@ -15,6 +15,10 @@ const AddTodo = () => {
   });
   const id = nextId();
   const dispatch = useDispatch();
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setTodo({ ...todo, [name]: value });
+  };
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (todo.title.trim() === "") return;
@@ -26,13 +30,9 @@ const AddTodo = () => {
       id: 0,
     });
   };
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setTodo({ ...todo, [name]: value });
-  };
 
   return (
-    <Card backgroundColor="#eee">
+    <StCard backgroundColor="#eee">
       <StFormContainer onSubmit={onSubmitHandler}>
         <label>제목 : </label>
         <input
@@ -43,11 +43,9 @@ const AddTodo = () => {
         />
         <label>내용 : </label>
         <input onChange={onChangeHandler} name="content" value={todo.content} />
-        <Button  type="submit">
-          추가하기
-        </Button>
+        <Button type="submit">추가하기</Button>
       </StFormContainer>
-    </Card>
+    </StCard>
   );
 };
 
@@ -56,7 +54,6 @@ const StFormContainer = styled.form`
   display: flex;
   align-items: center;
   gap: 20px;
-
   input {
     outline: none;
     border: none;

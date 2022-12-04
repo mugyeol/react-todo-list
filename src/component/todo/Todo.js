@@ -1,15 +1,14 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { completeTodo, deleteTodo } from "../../redux/modules/todos";
 import Button from "../UI/Button";
-import Card from "../UI/Card";
+import  { StCard } from "../UI/Card";
 
 const Todo = ({ todo }) => {
   const dispatch = useDispatch();
   const deleteTodoHandler = () => {
-    console.log("todo.id", todo.id);
     dispatch(deleteTodo(todo.id));
   };
   const completeTodoHandler = () => {
@@ -17,8 +16,8 @@ const Todo = ({ todo }) => {
   };
 
   return (
-    <Card margin="none">
-      <Link to={`/${todo.id}`}>상세보기</Link>
+    <StContainer margin="none">
+      <Link className="link" to={`/${todo.id}`}>상세보기</Link>
       <h1>{todo.title}</h1>
       <p>{todo.content}</p>
       <StBtnWrapper>
@@ -29,26 +28,20 @@ const Todo = ({ todo }) => {
           {todo.isDone ? "취소하기" : "완료하기"}
         </Button>
       </StBtnWrapper>
-    </Card>
+    </StContainer>
   );
 };
 
 export default Todo;
+const StContainer = styled(StCard)`
+  .link{
+    text-decoration: none;
+  }
 
+`
 const StBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
 `;
 
-// .complete{
-//    border: 1px solid #2A3990;
-// }
-// .delete {
-//   border: 1px solid red;
-// }
-// .delete:hover{
-//   background: red;
-//   border-color: red;
-//   color: white;
-// }
