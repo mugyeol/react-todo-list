@@ -1,6 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
-import { act } from "react-dom/test-utils";
-
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const COMPLETE_TODO = "COMPLETE_TODO";
@@ -18,28 +15,51 @@ export const completeTodo = (payload) => {
 export const getTodoById = (payload) => {
   return { type: GET_TODO_BY_ID, payload };
 };
-
-const initialState = [
-  {
-    title: "제목0",
-    content: "내용0",
+//dispatch -> todos : state.todos.todos (todo : state.todos.todo)
+//reducer -> todos : state.todos (todo : state.todo)
+const initialState = {
+  todos: [
+    {
+      title: "제목0",
+      content: "내용0",
+      isDone: false,
+      id: "0",
+    },
+  ],
+  todo: {
+    title: "",
+    content: "",
     isDone: false,
-    id: 0,
+    id: "0",
   },
-];
+};
 const todos = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [...state, action.payload];
+      return {
+        ...state,
+        todos: [...state.todos, action.payload],
+      };
     case DELETE_TODO:
-      const stateAfterDelete = state.filter((todo)=>todo.id !==action.payload)
-      return stateAfterDelete
+      const stateAfterDelete = state.todos.filter(
+        (todo) => todo.id !== action.payload
+      );
+      return { ...state, todos: [stateAfterDelete] };
     case COMPLETE_TODO:
-        //여기부터 차근차근 볼것 
-      const idx = state.findIndex((todo)=>todo.id === action.payload)
-      const stateCopy = [...state]
-      stateCopy[idx] = !stateCopy[idx].isDone
-      return stateCopy;
+      const stateCopy = { ...state };
+      const idx = stateCopy.todos.findIndex(
+        (todo) => todo.id === action.payload
+      );
+      console.log(stateCopy.todos[idx], "stateCopy.todos[idx]");
+      stateCopy.todos[idx].isDone = !stateCopy.todos[idx].isDone;
+      return { ...state, todos: [...stateCopy.todos] };
+    case GET_TODO_BY_ID:
+      console.log(state.todos[0].id,"todo.id")
+      console.log(typeof(action.payload), "action.payload");
+      console.log(state.todos, "state.todos");
+      const todo = state.todos.filter((todo) => todo.id === action.payload);
+      console.log(todo, "todo");
+      return { ...state, todo: todo[0] };
     default:
       return state;
   }

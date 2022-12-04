@@ -1,9 +1,28 @@
 import React from "react";
+import styled from "styled-components";
 
 import classes from "./Card.module.css";
 
 const Card = (props) => {
-  return (<div className={`${classes.card} ${props.className}`}>{props.children}</div>);
+  return (
+    <StCard
+      borderColor={props.borderColor}
+      backgroundColor={props.backgroundColor}
+      margin={props.margin}
+    >
+      {props.children}
+    </StCard>
+  );
 };
 
 export default Card;
+
+export const StCard = styled.div`
+  border: 1px solid
+    ${({ borderColor }) => (borderColor === undefined ? "none" : borderColor)};
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.26);
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  border-radius:20px;
+  padding: 20px;
+  margin-top:  ${({ margin }) => (margin === undefined ? "20px" : margin)};
+`;

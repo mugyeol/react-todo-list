@@ -5,8 +5,9 @@ import classes from "./AddTodo.module.css";
 import nextId from "react-id-generator";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../redux/modules/todos";
+import styled from "styled-components";
 
-const AddTodo = (props) => {
+const AddTodo = () => {
   const [todo, setTodo] = useState({
     title: "",
     content: "",
@@ -16,9 +17,9 @@ const AddTodo = (props) => {
   const id = nextId();
   const dispatch = useDispatch();
   const onSubmitHandler = (e) => {
-    e.preventDefault()
-    if(todo.title.trim()==="") return
-    dispatch(addTodo({...todo,id}));
+    e.preventDefault();
+    if (todo.title.trim() === "") return;
+    dispatch(addTodo({ ...todo, id }));
     setTodo({
       title: "",
       content: "",
@@ -32,18 +33,42 @@ const AddTodo = (props) => {
   };
 
   return (
-    <Card className={classes.addtodo}>
-      <form className={classes.addform} onSubmit={onSubmitHandler}>
+    <Card backgroundColor="#eee">
+      <StFormContainer onSubmit={onSubmitHandler}>
         <label>제목 : </label>
-        <input onChange={onChangeHandler} name="title"value={todo.title} required />
+        <input
+          onChange={onChangeHandler}
+          name="title"
+          value={todo.title}
+          required
+        />
         <label>내용 : </label>
         <input onChange={onChangeHandler} name="content" value={todo.content} />
-        <Button className={classes.addbtn} type="submit">
+        <Button  type="submit">
           추가하기
         </Button>
-      </form>
+      </StFormContainer>
     </Card>
   );
 };
 
 export default AddTodo;
+const StFormContainer = styled.form`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  input {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    height: 35px;
+    width: 240px;
+    padding: 3px;
+    font-size: 16px;
+  }
+  label {
+    font-weight: bold;
+    font-size: 20px;
+  }
+`;

@@ -1,17 +1,17 @@
-.addtodo{
+/* .addtodo{
 
     padding: 20px;
     background-color: #eee;
     border: none;
 
-}
-.addtodo .addform { 
+} */
+.addform { 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-.addtodo input{
+input{
     outline: none;
     border: none;
     border-radius: 10px;
@@ -20,7 +20,7 @@
     padding: 3px;
     font-size: 16px;
 }
-.addtodo label{
+label{
     font-weight: bold;
     font-size: 20px;
 }

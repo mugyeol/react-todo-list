@@ -1,56 +1,58 @@
 import React, { Fragment } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { completeTodo, deleteTodo } from "../../redux/modules/todos";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import classes from "./Todo.module.css";
 
-const Todo = ({ todo, onDelete, onComplete }) => {
-  // const deleteTodoHandler = (todoId) => {
-    // setTodoList((prevList) => {
-    //   return prevList.filter((todo) => todo.id !== todoId);
-    // });
-  // };
-  // const completeTodoHandler = (todoId, isDone) => {
-    // if (isDone) {
-    //   setTodoList((prevList) => {
-    //     let index = prevList.findIndex((todo) => todo.id === todoId);
-    //     prevList[index].isDone = false;
-    //     return [...prevList];
-    //   });
-    // } else {
-    //   setTodoList((prevList) => {
-    //     let index = prevList.findIndex((todo) => todo.id === todoId);
-    //     prevList[index].isDone = true;
-    //     return [...prevList];
-    //   });
-    // }
-  // };
+const Todo = ({todo}) => {
+ 
   const dispatch = useDispatch()
   const deleteTodoHandler = () => {
     console.log("todo.id",todo.id)
     dispatch(deleteTodo(todo.id))
-    // onDelete(todo.id);
   };
   const completeTodoHandler = () => {
     dispatch(completeTodo(todo.id))
-    // onComplete(todo.id, todo.isDone);
   };
 
   return (
-    <Card className={classes.todo}>
+    <Card margin="none">
+      <Link to={`/${todo.id}`} >상세보기</Link>
       <h1>{todo.title}</h1>
-      <p className={classes.contents}>{todo.content}</p>
-      <div className={classes.buttonWrapper}>
-        <Button className={classes.delete} onClick={deleteTodoHandler}>
+      <p>{todo.content}</p>
+      <StBtnWrapper>
+        <Button hover="red" border="red" onClick={deleteTodoHandler}>
           삭제하기
         </Button>
-        <Button className={classes.complete} onClick={completeTodoHandler}>
+        <Button onClick={completeTodoHandler}>
           {todo.isDone ? "취소하기" : "완료하기"}
         </Button>
-      </div>
+      </StBtnWrapper>
     </Card>
   );
 };
 
 export default Todo;
+
+const StBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+`
+
+
+// .complete{
+//    border: 1px solid #2A3990;
+// }
+// .delete { 
+//   border: 1px solid red;
+// }
+// .delete:hover{
+//   background: red;
+//   border-color: red;
+//   color: white;
+// }
+
