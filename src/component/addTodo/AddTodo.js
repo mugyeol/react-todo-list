@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
-import classes from "./AddTodo.module.css";
 import nextId from "react-id-generator";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../redux/modules/todos";

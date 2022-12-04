@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Card from "../UI/Card";
 import Todo from "./Todo";
-import classes from "./TodoList.module.css";
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todos.todos);

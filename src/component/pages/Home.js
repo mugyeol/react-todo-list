@@ -6,10 +6,10 @@ import Layout from "../UI/Layout";
 
 const Home = () => {
   return (
-   <Layout>
-        <Header />
-        <AddTodo />
-        <TodoList />
+    <Layout>
+      <Header />
+      <AddTodo />
+      <TodoList />
     </Layout>
   );
 };

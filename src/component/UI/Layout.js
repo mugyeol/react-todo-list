@@ -10,9 +10,3 @@ const StLayout = styled.div`
   min-width: 800px;
   margin: 0 auto;
 `;
-// .layout{
-//     width: 1200px;
-//     margin: auto;
-//     display: flex;
-//     /* border: 1px solid blue; */
-//   }
