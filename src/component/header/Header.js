@@ -19,4 +19,3 @@ const StContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-

@@ -55,7 +55,7 @@ const todos = (state = initialState, action) => {
         (todo) => todo.id === action.payload
       );
       stateCopy.todos[idx].isDone = !stateCopy.todos[idx].isDone;
-      return { ...state, todos: [...stateCopy.todos] };
+      return { ...state, todos: [...stateCopy.todos] }; // 스프레드랑 배열 괄호 빼면 왜 안되는지 알아봐볼것 !
     case GET_TODO_BY_ID:
       const todo = state.todos.filter((todo) => todo.id === action.payload);
       return { ...state, todo: todo[0] };

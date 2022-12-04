@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import {StCard} from "../UI/Card";
+import { StCard } from "../UI/Card";
 import Todo from "./Todo";
 
 const TodoList = () => {
@@ -20,7 +20,7 @@ const TodoList = () => {
         </StContainer>
       </StCard>
       <h1>done</h1>
-      <StCard borderColor="green">
+      <StCard borderColor="gray">
         <StContainer>
           {doneList.map((todo) => (
             <Todo key={todo.id} todo={todo} />

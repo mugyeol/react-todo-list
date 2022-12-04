@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { completeTodo, deleteTodo } from "../../redux/modules/todos";
 import Button from "../UI/Button";
-import  { StCard } from "../UI/Card";
+import { StCard } from "../UI/Card";
 
 const Todo = ({ todo }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,9 @@ const Todo = ({ todo }) => {
 
   return (
     <StContainer margin="none">
-      <Link className="link" to={`/${todo.id}`}>상세보기</Link>
+      <Link className="link" to={`/${todo.id}`}>
+        상세보기
+      </Link>
       <h1>{todo.title}</h1>
       <p>{todo.content}</p>
       <StBtnWrapper>
@@ -34,14 +36,12 @@ const Todo = ({ todo }) => {
 
 export default Todo;
 const StContainer = styled(StCard)`
-  .link{
+  .link {
     text-decoration: none;
   }
-
-`
+`;
 const StBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 15px;
 `;
-
