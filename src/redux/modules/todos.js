@@ -37,6 +37,10 @@ const initialState = {
     id: "0",
   },
 };
+
+const initialState1 = {
+  userName: "",
+};
 const todos = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
@@ -57,8 +61,15 @@ const todos = (state = initialState, action) => {
       stateCopy.todos[idx].isDone = !stateCopy.todos[idx].isDone;
       return { ...state, todos: [...stateCopy.todos] }; // 스프레드랑 배열 괄호 빼면 왜 안되는지 알아봐볼것 !
     case GET_TODO_BY_ID:
+      console.log("action todobyid", action.payload);
+      for (let i = 0; i < 20; i++) {
+        console.log("i", i);
+      }
       const todo = state.todos.filter((todo) => todo.id === action.payload);
       return { ...state, todo: todo[0] };
+    // return { ...state, todo: state.todos.find((todo)=>{
+    // return todo.id===action.payload
+    // })
     default:
       return state;
   }

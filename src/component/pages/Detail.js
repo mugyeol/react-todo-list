@@ -8,16 +8,21 @@ import Button from "../UI/Button";
 
 const Detail = () => {
   const dispatch = useDispatch();
-  const todo = useSelector((state) => state.todos.todo);
   const { id } = useParams();
+  dispatch(getTodoById(id));
+
+  const todo = useSelector((state) => state.todos.todo);
+  
+  // console.log("id",id)
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getTodoById(id));
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(getTodoById(id));
+  // }, [dispatch, id]);
 
   return (
     <StWrapper>
+    {/* {console.log("rendering")} */}
       <StContainer>
         <span>id : {todo.id}</span>
         <Button onClick={() => navigate("/")}>이전으로</Button>

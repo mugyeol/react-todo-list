@@ -30,9 +30,9 @@ const AddTodo = () => {
       id: 0,
     });
   };
-
   return (
     <StCard backgroundColor="#eee">
+ 
       <StFormContainer onSubmit={onSubmitHandler}>
         <label>제목 : </label>
         <input
@@ -62,9 +62,12 @@ const StFormContainer = styled.form`
     width: 240px;
     padding: 3px;
     font-size: 16px;
+    
   }
   label {
     font-weight: bold;
     font-size: 20px;
   }
 `;
+
+

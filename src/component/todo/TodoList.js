@@ -6,7 +6,10 @@ import Todo from "./Todo";
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todos.todos);
+  console.log("todos",todos)
   const workingList = todos.filter((el) => !el.isDone);
+  console.log("workingList",workingList)
+
   const doneList = todos.filter((el) => el.isDone);
 
   return (
